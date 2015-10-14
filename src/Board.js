@@ -150,26 +150,33 @@
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       var n = this.get(0).length;
       var chessPiecesAtMajorDiagonal = 0;
-
-      for (var i = 0, j = majorDiagonalColumnIndexAtFirstRow; j < n; i++, j++) {
-        if (this.get(i)[j] === 1) {
-          chessPiecesAtMajorDiagonal++;
+      //debugger;
+      for( var row = 0, col = majorDiagonalColumnIndexAtFirstRow; col < n; row++, col++ ){
+        // if(col === -1){
+        //   debugger;
+        // }
+        if( col >= 0 && row < n){
+          console.log(row, col);
+          if( this.get(row)[col] === 1 ){
+            chessPiecesAtMajorDiagonal++;
+          }
         }
       }
-
-      if (chessPiecesAtMajorDiagonal > 1) {
-        return true;
-      } else {
-        return false;
-      }
+      console.log();
+      return chessPiecesAtMajorDiagonal > 1 ? true : false;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
       var n = this.get(0).length;
 
-      for (var i = 0; i < n - 1; i++) {
-        if (this.hasMajorDiagonalConflictAt(i)) {
+      for( var col = - n + 1; col < n; col++ ){
+        // if(col === 0){
+        //   debugger;
+        // }
+        console.log(col);
+
+        if( this.hasMajorDiagonalConflictAt(col) ){
           return true;
         }
       }
@@ -185,30 +192,36 @@
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
       var n = this.get(0).length;
       var chessPiecesAtMinorDiagonal = 0;
-
-      for (var i = 0, j = minorDiagonalColumnIndexAtFirstRow; i < n; i++, j--) {
-        if (this.get(i)[j] === 1) {
-          chessPiecesAtMinorDiagonal++;
+      //debugger;
+      for( var row = 0, col = minorDiagonalColumnIndexAtFirstRow; col >= 0 ; row++, col-- ){
+        // if(col === -1){
+        //   debugger;
+        // }
+        if( col < n && row < n){
+          console.log(row, col);
+          if( this.get(row)[col] === 1 ){
+            chessPiecesAtMinorDiagonal++;
+          }
         }
       }
-
-      if (chessPiecesAtMinorDiagonal > 1) {
-        return true;
-      } else {
-        return false;
-      }
+      //console.log();
+      return chessPiecesAtMinorDiagonal > 1 ? true : false;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       var n = this.get(0).length;
 
-      for (var i = 1; i < n; i++) {
-        if (this.hasMinorDiagonalConflictAt(i)) {
+      for( var col = n * 2 - 1; col >= 0; col-- ){
+        // if(col === 0){
+        //   debugger;
+        // }
+        console.log(col);
+
+        if( this.hasMinorDiagonalConflictAt(col) ){
           return true;
         }
       }
-
       return false;
     }
 
